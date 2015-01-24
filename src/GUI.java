@@ -239,6 +239,9 @@ public class GUI extends javax.swing.JFrame {
         Validate validation = new Validate();       
         validation.addNumber(txtCard, txtOutput);
         validation.reverseDigits(txtOutput);
+        validation.multiplyOdd(txtOutput);
+        validation.subtract9(txtOutput);
+        validation.addAllNumbers(txtOutput);
     }//GEN-LAST:event_btnValidateActionPerformed
 
     private void btnCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckActionPerformed

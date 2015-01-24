@@ -15,9 +15,9 @@ import javax.swing.JTextField;
  */
 public class Validate {
     
-    public ArrayList<Integer> cardNumber = new ArrayList<Integer>(); 
-    
+    public ArrayList<Integer> cardNumber = new ArrayList<Integer>();     
     public int digit = 0;
+    public int sum = 0;
     
     public Boolean LuhnFormula (JTextField txtCard) {
         Boolean flag = null;
@@ -43,15 +43,51 @@ public class Validate {
         txtOutput.append(this.toString("Reverse the Digits", cardNumber));
     }
     
-
+    public void multiplyOdd (JTextArea txtOutput) {
+        int temp;
+        for (int i=0; i < cardNumber.size() ; i++) {
+            if (i % 2 != 0) { // If i mod 2 is not equal to 0 (i.e. it has a remainder) then the number is odd.
+                temp = cardNumber.get(i); // Setting temp int value to that of the current element in the ArrayList.
+                temp = temp * 2; // Multiplying temp int value by 2 (as per Luhn's formula).
+                cardNumber.set(i, temp); // Setting the new value of the current/same element in the ArrayList, to that of the multiplied temp int value.
+            }
+        }
+        txtOutput.append(this.toString("Multiply Odd Digits by 2", cardNumber));
+    }
+    
+    public void subtract9 (JTextArea txtOutput) {
+        int temp;
+        /* for (int number : cardNumber) { // Alternate for-loop to the method above
+            if (number > 9) {
+                temp = cardNumber.get(number); // Setting temp int value to that of the current element in the ArrayList.
+                temp = temp - 9; // Multiplying temp int value by 2 (as per Luhn's formula).
+                cardNumber.set(number, temp); // Setting the new value of the current/same element in the ArrayList, to that of the multiplied temp int value.
+            }
+        } */
+        for (int i=0; i < cardNumber.size(); i++) { 
+            if (cardNumber.get(i) > 9) {
+                temp = cardNumber.get(i); // Setting temp int value to that of the current element in the ArrayList.
+                temp = temp - 9; // Multiplying temp int value by 2 (as per Luhn's formula).
+                cardNumber.set(i, temp); // Setting the new value of the current/same element in the ArrayList, to that of the multiplied temp int value.
+            }
+        }
+        txtOutput.append(this.toString("Subtract 9 from numbers bigger than 9", cardNumber));
+    }
+    
+    public void addAllNumbers (JTextArea txtOutput) {        
+        for (int number : cardNumber ) {
+            sum = sum + number;
+        }
+        txtOutput.append(this.toString("Add all Numbers", cardNumber) + "=" + sum);
+    }
     
     public String toString (String Step, ArrayList<Integer> numbers) {
         String output = "";
         String title = Step;
         String outputnumbers = "";
-        for (int number : numbers) {
-            outputnumbers = number + "";
-        }
+       // for (int number : numbers) {
+       //     outputnumbers = number + "";
+       // } 
         output = title + ": " + numbers + "\n";
         return output;
     }
