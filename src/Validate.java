@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Collections;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -37,7 +38,12 @@ public class Validate {
         txtOutput.append(this.toString("Dropping Last Number", cardNumber));
     }
     
+    public void reverseDigits(JTextArea txtOutput) {
+        Collections.reverse(cardNumber);
+        txtOutput.append(this.toString("Reverse the Digits", cardNumber));
+    }
     
+
     
     public String toString (String Step, ArrayList<Integer> numbers) {
         String output = "";

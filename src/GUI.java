@@ -236,8 +236,9 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSecurityActionPerformed
 
     private void btnValidateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidateActionPerformed
-        Validate validation = new Validate();
+        Validate validation = new Validate();       
         validation.addNumber(txtCard, txtOutput);
+        validation.reverseDigits(txtOutput);
     }//GEN-LAST:event_btnValidateActionPerformed
 
     private void btnCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCheckActionPerformed
