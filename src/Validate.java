@@ -1,6 +1,7 @@
 
 import java.util.ArrayList;
 import java.util.Collections;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -19,10 +20,18 @@ public class Validate {
     public int digit = 0;
     public int sum = 0;
     
-    public Boolean LuhnFormula (JTextField txtCard) {
-        Boolean flag = null;
-        // Rest of the methods will fit in here. Once completed.       
-        return flag;
+    public void LuhnFormula (JTextField txtCard, JTextArea txtOutput) {
+        addNumber(txtCard, txtOutput);// First 2 seps of Luhn's Formula
+        reverseDigits(txtOutput); // Reverse the Digits
+        multiplyOdd(txtOutput); // Multiply odd digits by 2
+        subtract9(txtOutput); // Subtract 9 to numbers over 9
+        addAllNumbers(txtOutput); // Add all numbers
+        if (sum % 10 == 5) {
+            JOptionPane.showMessageDialog(null, "Credit Card is Valid");
+        } else {
+            JOptionPane.showMessageDialog(null, "Credit Card is not Valid");
+        }
+        
     }
     
 
@@ -80,6 +89,7 @@ public class Validate {
         }
         txtOutput.append(this.toString("Add all Numbers", cardNumber) + "=" + sum);
     }
+
     
     public String toString (String Step, ArrayList<Integer> numbers) {
         String output = "";
