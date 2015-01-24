@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /*
@@ -14,22 +15,39 @@ import javax.swing.JTextField;
 public class Validate {
     
     public ArrayList<Integer> cardNumber = new ArrayList<Integer>(); 
+    
     public int digit = 0;
     
     public Boolean LuhnFormula (JTextField txtCard) {
         Boolean flag = null;
-        
-        
+        // Rest of the methods will fit in here. Once completed.       
         return flag;
     }
     
-    public void addNumber (JTextField txtCard) {
+
+    
+    public void addNumber (JTextField txtCard, JTextArea txtOutput) { // Steps 1 & 2 of Luhn's Formula
         String number = txtCard.getText();        
-        for (int i=0; i > number.length(); i++) {
-            cardNumber.add(Integer.parseInt(number.substring(i, i+1)));
+        for (int i=0; i < number.length() - 1; i++) {
+            cardNumber.add(Integer.parseInt(number.substring(i, i+1))); // Adding numbers from String found in textfield, one by one, using SubString method.
         }
-        digit = cardNumber();
-        cardNumber.remove(cardNumber.size() - 1);
+        txtOutput.append(this.toString("Original Number", cardNumber)); 
+        digit = cardNumber.get(cardNumber.size() - 1); // Getting last digit and storing it for use later for the check part of Luhn's Formula
+        cardNumber.remove(cardNumber.size() - 1); // Dropping last digit
+        txtOutput.append(this.toString("Dropping Last Number", cardNumber));
+    }
+    
+    
+    
+    public String toString (String Step, ArrayList<Integer> numbers) {
+        String output = "";
+        String title = Step;
+        String outputnumbers = "";
+        for (int number : numbers) {
+            outputnumbers = number + "";
+        }
+        output = title + ": " + numbers + "\n";
+        return output;
     }
     
     
